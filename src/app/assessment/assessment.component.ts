@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AssessmentService } from './assessment.service';
+import { Assessment } from './assessment';
 
 @Component({
   selector: 'app-assessment',
@@ -7,9 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AssessmentComponent implements OnInit {
 
-  constructor() { }
+  assessment: Assessment[] = [];
+  private errorMessage: any = '';
+  constructor(private as: AssessmentService) { }
 
   ngOnInit() {
+    this.getAssessments();
+  }
+  
+  getAssessments(): void {
+    this.as.getAssessments()
+      .then(assessment => {
+        this.assessment = assessment
+      },
+      error => this.errorMessage = <any>error
+      );
   }
 
 }

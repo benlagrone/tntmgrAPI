@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { QuestionlibraryService } from './questionlibrary.service';
+import { QuestionLibrary } from './questionlibrary';
 
 @Component({
   selector: 'app-questionlibrary',
@@ -7,9 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class QuestionlibraryComponent implements OnInit {
 
-  constructor() { }
+  questionlibrary: QuestionLibrary[] = [];
+  private errorMessage: any = '';
+  constructor(private qls: QuestionlibraryService) { }
 
   ngOnInit() {
+    this.getQuestionLibraries();
+  }
+
+  getQuestionLibraries(): void {
+    this.qls.getQuestionLibraries()
+      .then(questionlibrary => {
+        this.questionlibrary = questionlibrary;
+      },
+      error => this.errorMessage = <any>error
+      );
   }
 
 }

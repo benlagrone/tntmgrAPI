@@ -1,28 +1,33 @@
 import { Injectable } from '@angular/core';
-import { Headers, Http };
-import 'rxjs/add/operators/toPromise';
+import { Headers, Http, Response } from '@angular/http';
+import 'rxjs/add/operator/toPromise';
+import { Observable } from 'rxjs/Observable';
+import { User } from './user';
 
 @Injectable()
-export class User {
-  name: String;
-  role: [];
-  active: Boolean;
-  creationDate: Date
-}
 export class UserService {
 
-  constructor(private http: Http) { }
-private usersUrl = 'http://localhost:8080/api/user'
-  getUsers(): Promise<User>[] {
-    return this.http.get(this.usersUrl)
-    .toPromise()
-    .then(response => response.json().data as User[])
-    .catch(this.handleError);
-  }
+  private headers = new Headers({ 'Content-Type': 'application/json' });
+  private userUrl = 'http://localhost:8080/api/user';
 
-  private handleError(error: any): Promise<any> {
-    console.error('An error happened', error);
-    return Promise.reject(error.message || error);
+  constructor(private http: Http) { }
+
+  getUsers(): Promise<User[]> {
+    return this.http.get(this.userUrl)
+      .toPromise()
+      .then(this.extractData)
+      .catch(this.handleError);
+  }
+  private extractData(res: Response) {
+    let body = res.json();
+    return body || [];
+  }
+  private handleError(error: any) {
+
+    let errMsg = (error.message) ? error.message :
+      error.status ? `${error.status} - ${error.statusText}` : 'Server error';
+    console.error(errMsg); // log to console instead
+    return Observable.throw(errMsg);
   }
 
 }

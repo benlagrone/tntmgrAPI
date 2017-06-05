@@ -1,3 +1,6 @@
-<p>
-  questionlibrary works!
-</p>
+<h2>Question Library</h2>
+<ul class="users">
+    <li *ngFor="let questionlibrary of questionlibrary">
+        <span class="badge">{{questionlibrary.name}}</span>
+    </li>
+</ul>

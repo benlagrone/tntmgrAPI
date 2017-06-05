@@ -1,3 +1,6 @@
-<p>
-  category works!
-</p>
+<h2>Categories</h2>
+<ul class="users">
+    <li *ngFor="let category of category">
+        <span class="badge">{{category.name}}</span>
+    </li>
+</ul>
