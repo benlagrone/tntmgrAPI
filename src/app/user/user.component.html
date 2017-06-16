@@ -12,21 +12,67 @@
                     </tr>
                 </thead>
                 <tbody class="">
-                    <tr class="" *ngFor="let item of list; let i = index;">
-                        <td class=""><i class="fa f fa-user-circle" aria-hidden="true"></i>&nbsp;{{item.name}}</td>
-                        <td class="">
-                            <i *ngIf="item.active" class="fa fa-check-circle-o" aria-hidden="true"></i>
-                            <i *ngIf="!item.active" class="fa fa-circle-o" aria-hidden="true"></i>
+                    <tr *ngFor="let customRanking of customRankings.controls; let i=index" [formGroupName]="i" id="{{i}}RankingForm" class='-tRankingForms'>
+                        <td>
+                            <span id="ranking-name-{{i}}-display" [hidden]="formWatchArray[i].edit">
+                                                        {{rankingsForm.value.customRankings[i].name}}
+                                                    </span>
+                            <span class="form-group {{unique(i)?'unique':'has-error duplicate'}}" [hidden]="!formWatchArray[i].edit">
+                                                        <label for="ranking-name-{{i}}" class="sr-only">Ranking Name</label>
+                                                        <input required type="text" class="form-control" id="ranking-name-{{i}}" name="ranking-name-{{i}}" formControlName="name" />
+                                                    </span>
                         </td>
                         <td>
-                            <ul>
-                                <li *ngFor="let subitem of item.role"><span>{{subitem}}</span></li>
-                            </ul>
+                            <span id="ranking-type-{{i}}-display">
+                                                        {{rankingsForm.value.customRankings[i].type}}
+                                                    </span>
                         </td>
                         <td>
-                            <a class="fa fa-edit fa-2x pointer" (click)="editUser(i)" aria-hidden="true"></a>
-                            <a class="fa fa-trash fa-2x pointer" (click)="deleteUser(i)" aria-hidden="true"></a>
-
+                            <span id="ranking-ods-{{i}}-display" [hidden]="formWatchArray[i].edit">
+                                                        {{formWatchArray[i].displayODS}}
+                                                    </span>
+                            <span [hidden]="!formWatchArray[i].edit">
+                                                        <label for="ranking-ods-{{i}}" class="sr-only">ODS</label>
+                                                        <select required id="ranking-ods-{{i}}" class="form-control" formControlName="ods">
+                                                            <option *ngFor="let odsOption of opDataSets" [value]="odsOption.id">{{odsOption.displayName}}</option>
+                                                        </select>
+                                                    </span>
+                        </td>
+                        <td>
+                            <span id="ranking-sort-{{i}}-display" [hidden]="formWatchArray[i].edit">
+                                                        {{rankingsForm.value.customRankings[i].sort}}
+                                                    </span>
+                            <span [hidden]="!formWatchArray[i].edit">
+                                                        <label for="ranking-sort-{{i}}" class="sr-only">Sort Order</label>
+                                                        <select required name="ranking-sort-{{i}}" id="ranking-sort-{{i}}" class="form-control" formControlName="sort">
+                                                            <option *ngFor="let sortorder of sortOrders"  [value]="sortorder">{{sortorder}}</option>
+                                                        </select>
+                                                    </span>
+                        </td>
+                        <td>
+                            <span [hidden]="formWatchArray[i].edit||rankingsForm.value.customRankings[i].type.toLowerCase()==='default'">
+                                                        <a id="ranking-edit-{{i}}" (click)="EditRanking(i)">Edit</a>
+                                                        | <a id="ranking-delete-{{i}}"(click)="DeleteRanking(i)">Delete</a>
+                                                    </span>
+                            <span [hidden]="!formWatchArray[i].edit">
+                                                        <span [hidden]="this.formWatchArray[i].saved">
+                                                        <button 
+                                                        [disabled]="!unique(i)||!(customRanking.controls.name.valid&&customRanking.controls.type.valid&&customRanking.controls.ods.valid&&customRanking.controls.sort.valid&&(customRanking.controls.name.dirty||customRanking.controls.type.dirty||customRanking.controls.ods.dirty||customRanking.controls.sort.dirty))"
+                                                        (click)="SaveRanking(i)"
+                                                         class="btn btn-primary"
+                                                         id="ranking-create-{{i}}"
+                                                         >Save</button>
+                                                         </span>
+                            <span [hidden]="!this.formWatchArray[i].saved">
+                                                          <button 
+                                                        [disabled]="!unique(i)||!(customRanking.controls.name.valid&&customRanking.controls.type.valid&&customRanking.controls.ods.valid&&customRanking.controls.sort.valid&&(customRanking.controls.name.dirty||customRanking.controls.type.dirty||customRanking.controls.ods.dirty||customRanking.controls.sort.dirty))"
+                                                        (click)="UpdateRanking(i)"
+                                                         class="btn btn-primary"
+                                                         id="ranking-update-{{i}}"
+                                                         >Update</button>
+                                                         </span>
+                            <button id="ranking-cancel-{{i}}" (click)="CancelRanking(i)" class="btn btn-default">Cancel</button>
+                            </span>
                         </td>
                     </tr>
                 </tbody>
