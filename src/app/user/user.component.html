@@ -12,23 +12,23 @@
                     </tr>
                 </thead>
                 <tbody class="">
-                    <tr *ngFor="let customRanking of customRankings.controls; let i=index" [formGroupName]="i" id="{{i}}RankingForm" class='-tRankingForms'>
+                    <tr *ngFor="let customUser of customUsers.controls; let i=index" [formGroupName]="i" id="{{i}}UserForm" class='-tUserForms'>
                         <td>
-                            <span id="ranking-name-{{i}}-display" [hidden]="formWatchArray[i].edit">
-                                                        {{rankingsForm.value.customRankings[i].name}}
+                            <span id="user-name-{{i}}-display" [hidden]="formWatchArray[i].edit">
+                                                        {{usersForm.value.customUsers[i].name}}
                                                     </span>
                             <span class="form-group {{unique(i)?'unique':'has-error duplicate'}}" [hidden]="!formWatchArray[i].edit">
-                                                        <label for="ranking-name-{{i}}" class="sr-only">Ranking Name</label>
-                                                        <input required type="text" class="form-control" id="ranking-name-{{i}}" name="ranking-name-{{i}}" formControlName="name" />
+                                                        <label for="user-name-{{i}}" class="sr-only">User Name</label>
+                                                        <input required type="text" class="form-control" id="user-name-{{i}}" name="user-name-{{i}}" formControlName="name" />
                                                     </span>
                         </td>
                         <td>
-                            <span id="ranking-type-{{i}}-display">
-                                                        {{rankingsForm.value.customRankings[i].type}}
+                            <span id="user-role-{{i}}-display">
+                                                        {{usersForm.value.customUsers[i].type}}
                                                     </span>
                         </td>
                         <td>
-                            <span id="ranking-ods-{{i}}-display" [hidden]="formWatchArray[i].edit">
+                            <!--<span id="ranking-ods-{{i}}-display" [hidden]="formWatchArray[i].edit">
                                                         {{formWatchArray[i].displayODS}}
                                                     </span>
                             <span [hidden]="!formWatchArray[i].edit">
@@ -36,10 +36,10 @@
                                                         <select required id="ranking-ods-{{i}}" class="form-control" formControlName="ods">
                                                             <option *ngFor="let odsOption of opDataSets" [value]="odsOption.id">{{odsOption.displayName}}</option>
                                                         </select>
-                                                    </span>
+                                                    </span>-->
                         </td>
                         <td>
-                            <span id="ranking-sort-{{i}}-display" [hidden]="formWatchArray[i].edit">
+                            <!--<span id="ranking-sort-{{i}}-display" [hidden]="formWatchArray[i].edit">
                                                         {{rankingsForm.value.customRankings[i].sort}}
                                                     </span>
                             <span [hidden]="!formWatchArray[i].edit">
@@ -47,31 +47,31 @@
                                                         <select required name="ranking-sort-{{i}}" id="ranking-sort-{{i}}" class="form-control" formControlName="sort">
                                                             <option *ngFor="let sortorder of sortOrders"  [value]="sortorder">{{sortorder}}</option>
                                                         </select>
-                                                    </span>
+                                                    </span>-->
                         </td>
                         <td>
-                            <span [hidden]="formWatchArray[i].edit||rankingsForm.value.customRankings[i].type.toLowerCase()==='default'">
-                                                        <a id="ranking-edit-{{i}}" (click)="EditRanking(i)">Edit</a>
-                                                        | <a id="ranking-delete-{{i}}"(click)="DeleteRanking(i)">Delete</a>
+                            <span [hidden]="formWatchArray[i].edit||usersForm.value.customUsers[i].type.toLowerCase()==='default'">
+                                                        <a id="user-edit-{{i}}" (click)="EditUser(i)">Edit</a>
+                                                        | <a id="user-delete-{{i}}"(click)="DeleteUser(i)">Delete</a>
                                                     </span>
                             <span [hidden]="!formWatchArray[i].edit">
                                                         <span [hidden]="this.formWatchArray[i].saved">
                                                         <button 
-                                                        [disabled]="!unique(i)||!(customRanking.controls.name.valid&&customRanking.controls.type.valid&&customRanking.controls.ods.valid&&customRanking.controls.sort.valid&&(customRanking.controls.name.dirty||customRanking.controls.type.dirty||customRanking.controls.ods.dirty||customRanking.controls.sort.dirty))"
-                                                        (click)="SaveRanking(i)"
+                                                        [disabled]="!unique(i)||!(customUser.controls.name.valid&&customUser.controls.type.valid&&customUser.controls.ods.valid&&customUser.controls.sort.valid&&(customUser.controls.name.dirty||customUser.controls.type.dirty||customUser.controls.ods.dirty||customUser.controls.sort.dirty))"
+                                                        (click)="SaveUserg(i)"
                                                          class="btn btn-primary"
-                                                         id="ranking-create-{{i}}"
+                                                         id="user-create-{{i}}"
                                                          >Save</button>
                                                          </span>
                             <span [hidden]="!this.formWatchArray[i].saved">
                                                           <button 
-                                                        [disabled]="!unique(i)||!(customRanking.controls.name.valid&&customRanking.controls.type.valid&&customRanking.controls.ods.valid&&customRanking.controls.sort.valid&&(customRanking.controls.name.dirty||customRanking.controls.type.dirty||customRanking.controls.ods.dirty||customRanking.controls.sort.dirty))"
-                                                        (click)="UpdateRanking(i)"
+                                                        [disabled]="!unique(i)||!(customUser.controls.name.valid&&customUser.controls.type.valid&&customUser.controls.ods.valid&&customUser.controls.sort.valid&&(customUser.controls.name.dirty||customUser.controls.type.dirty||customUser.controls.ods.dirty||customUser.controls.sort.dirty))"
+                                                        (click)="UpdateUser(i)"
                                                          class="btn btn-primary"
-                                                         id="ranking-update-{{i}}"
+                                                         id="user-update-{{i}}"
                                                          >Update</button>
                                                          </span>
-                            <button id="ranking-cancel-{{i}}" (click)="CancelRanking(i)" class="btn btn-default">Cancel</button>
+                            <button id="user-cancel-{{i}}" (click)="CancelUser(i)" class="btn btn-default">Cancel</button>
                             </span>
                         </td>
                     </tr>

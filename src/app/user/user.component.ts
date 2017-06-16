@@ -12,9 +12,9 @@ import * as _ from 'lodash';
 })
 export class UserComponent implements OnInit {
   list: User[] = [];
-  // usersForm = new FormGroup({
-  //   name: new FormControl()
-  // });
+  usersForm = new FormGroup({
+    name: new FormControl()
+  });
   private userFormData: Array<User>;
   private userFormState: Array<boolean>;
   private userFormErrors: Array<string>;
@@ -23,7 +23,7 @@ export class UserComponent implements OnInit {
   private title = "users";
   private errorMessage: any = '';
   public formWatchArray = [];
-  usersForm: FormGroup;
+  // usersForm: FormGroup;
 
   public warnings: Array<string> = [];
 
@@ -68,6 +68,7 @@ export class UserComponent implements OnInit {
         const usersFGs = this.usersItems.map(userItem => this.fb.group(userItem));
         const usersFormArray = this.fb.array(usersFGs);
         this.usersForm.setControl('customUsers', usersFormArray);
+        console.log(this)
       },
       error => this.errorMessage = <any>error
       );
