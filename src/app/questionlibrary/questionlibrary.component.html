@@ -1,6 +1,10 @@
-<h2>Question Library</h2>
-<ul class="users">
-    <li *ngFor="let questionlibrary of questionlibrary">
-        <span class="badge">{{questionlibrary.name}}</span>
-    </li>
-</ul>
+<div class="row">
+    <div class="col-11 col-md-8">
+        <h2>{{title}}</h2>
+        <ul class="list-group">
+            <li class="list-group-item" *ngFor="let item of list">
+                <span class=""><i class="fa fa-circle-o" aria-hidden="true"></i>&nbsp;{{item.name}}</span>
+            </li>
+        </ul>
+    </div>
+</div>

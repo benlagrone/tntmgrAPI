@@ -9,7 +9,8 @@ import { Category } from './category';
 })
 export class CategoryComponent implements OnInit {
 
-  category: Category[] = [];
+  list: Category[] = [];
+  private title = "Categories";
   private errorMessage: any = '';
   constructor(private qs: CategoryService) { }
 
@@ -20,7 +21,7 @@ export class CategoryComponent implements OnInit {
   getCategories(): void {
     this.qs.getCategories()
       .then(category => {
-        this.category = category;
+        this.list = category;
       },
       error => this.errorMessage = <any>error
       );

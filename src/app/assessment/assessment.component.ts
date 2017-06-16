@@ -10,6 +10,7 @@ import { Assessment } from './assessment';
 export class AssessmentComponent implements OnInit {
 
   assessment: Assessment[] = [];
+  private title = "Assessments";
   private errorMessage: any = '';
   constructor(private as: AssessmentService) { }
 

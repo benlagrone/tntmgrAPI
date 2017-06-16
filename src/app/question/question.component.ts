@@ -9,18 +9,19 @@ import { Question } from './question';
 })
 export class QuestionComponent implements OnInit {
 
-  question: Question[] = [];
+  list: Question[] = [];
+  private title = "questions";
   private errorMessage: any = '';
   constructor(private qs: QuestionService) { }
 
   ngOnInit() {
     this.getQuestions();
   }
-  
+
   getQuestions(): void {
     this.qs.getQuestions()
       .then(question => {
-        this.question = question
+        this.list = question
       },
       error => this.errorMessage = <any>error
       );

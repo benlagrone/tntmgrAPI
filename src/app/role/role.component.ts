@@ -8,7 +8,8 @@ import { Role } from './role';
   styleUrls: ['./role.component.css']
 })
 export class RoleComponent implements OnInit {
-role: Role[] = [];
+list: Role[] = [];
+  private title = "role";
   private errorMessage: any = '';
   constructor(private rs: RoleService) { }
 
@@ -19,7 +20,7 @@ role: Role[] = [];
   getRoles(): void {
     this.rs.getRoles()
       .then( roles => {
-        this.role = roles
+        this.list = roles
       },
       error => this.errorMessage = <any>error
       );

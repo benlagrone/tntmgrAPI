@@ -9,7 +9,8 @@ import { QuestionLibrary } from './questionlibrary';
 })
 export class QuestionlibraryComponent implements OnInit {
 
-  questionlibrary: QuestionLibrary[] = [];
+  list: QuestionLibrary[] = [];
+  private title = "Question Libraries";
   private errorMessage: any = '';
   constructor(private qls: QuestionlibraryService) { }
 
@@ -20,7 +21,7 @@ export class QuestionlibraryComponent implements OnInit {
   getQuestionLibraries(): void {
     this.qls.getQuestionLibraries()
       .then(questionlibrary => {
-        this.questionlibrary = questionlibrary;
+        this.list = questionlibrary;
       },
       error => this.errorMessage = <any>error
       );

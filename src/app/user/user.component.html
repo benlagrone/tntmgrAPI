@@ -1,6 +1,36 @@
-<h2>Users</h2>
-<ul class="users">
-    <li *ngFor="let user of user">
-        <span class="badge">{{user.name}}</span>
-    </li>
-</ul>
+<div class="row">
+    <div class="col-12 col-md-12">
+        <h2>{{title}}</h2>
+        <form [formGroup]="usersForm" novalidate>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Active</th>
+                        <th>Role</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody class="">
+                    <tr class="" *ngFor="let item of list; let i = index;">
+                        <td class=""><i class="fa f fa-user-circle" aria-hidden="true"></i>&nbsp;{{item.name}}</td>
+                        <td class="">
+                            <i *ngIf="item.active" class="fa fa-check-circle-o" aria-hidden="true"></i>
+                            <i *ngIf="!item.active" class="fa fa-circle-o" aria-hidden="true"></i>
+                        </td>
+                        <td>
+                            <ul>
+                                <li *ngFor="let subitem of item.role"><span>{{subitem}}</span></li>
+                            </ul>
+                        </td>
+                        <td>
+                            <a class="fa fa-edit fa-2x pointer" (click)="editUser(i)" aria-hidden="true"></a>
+                            <a class="fa fa-trash fa-2x pointer" (click)="deleteUser(i)" aria-hidden="true"></a>
+
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+    </div>
+</div>
