@@ -1,15 +1,14 @@
 export class Question {
+  id: string;
   description: String;
-  questiontext: String;
+  questiontext: string;
   group: String;
-  author: String;
+  user: String;
   weight: String;
-  answer: String;
+  answer: any;
   active: Boolean;
   creationDate: Date;
-  type: String;
-  answer1: String;
-  answer2: String;
-  answer3: String;
-  answer4: String
+  type: any;
+  answers: any;
+  category: any;
 }

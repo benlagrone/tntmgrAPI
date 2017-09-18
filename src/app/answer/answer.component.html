@@ -1,0 +1,23 @@
+<h3 *ngIf="isLoading"><i>Loading Answers ... </i></h3>
+<h3 *ngIf="!isLoading">Select an Answer:</h3>
+<h3>Answers</h3>
+<div class="container">
+    <div class="row">
+        <div class="col-3">
+            <button (click)="getAnswers()" class="btn btn-primary">Refresh</button>
+            <button (click)="addNew()" class="btn btn-primary">New Answer</button>
+            <ul>
+                <li *ngFor="let answer of list" (click)="select(answer)"><a>{{answer.answertext}}</a></li>
+            </ul>
+        </div>
+
+        <div class="col-9">
+            <div *ngIf="selectedAnswer">
+               
+                <h2>Answer Detail</h2>
+                <h3>Editing: {{selectedAnswer.answertext}}</h3>
+                <answer-detail [answer]="selectedAnswer"></answer-detail>
+            </div>
+        </div>
+    </div>
+</div>

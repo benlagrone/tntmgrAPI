@@ -1,0 +1,67 @@
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()" novalidate>
+    <div style="margin-bottom: 1em">
+        <button type="submit" [disabled]="userForm.pristine" class="btn btn-success">Save</button>
+        <button type="reset" (click)="revert()" [disabled]="userForm.pristine" class="btn btn-danger">Revert</button>
+        <button  (click)="delete()" class="btn btn-danger">Delete</button>
+    </div>
+
+    <div class="form-group">
+        <label class="center-block">Name:
+        <input class="form-control" formControlName="name">
+      </label>
+    </div>
+    <div class="form-group">
+        <label class="center-block">email:
+        <input class="form-control" formControlName="email">
+      </label>
+    </div>
+    <div class="form-group">
+        <label class="center-block">firstname:
+        <input class="form-control" formControlName="firstname">
+      </label>
+    </div>
+    <div class="form-group">
+        <label class="center-block">lastname:
+        <input class="form-control" formControlName="lastname">
+      </label>
+    </div>
+    <div class="form-group">
+        <label class="center-block">phone1:
+        <input class="form-control" formControlName="phone1">
+      </label>
+    </div>
+    <div class="form-group">
+        <label class="center-block">phone2:
+        <input class="form-control" formControlName="phone2">
+      </label>
+    </div>
+    <div class="form-group">
+        <label class="center-block">preferredcontact:
+        <input class="form-control" formControlName="preferredcontact">
+      </label>
+    </div>
+    <div class="form-group">
+        <label class="center-block">Name:
+        <input class="form-control" formControlName="name">
+      </label>
+    </div>
+    <div class="form-group">
+        <label class="center-block">Role:
+    <p-multiSelect [options]="userRolesList" formControlName="roles"></p-multiSelect>
+      </label>
+    </div>
+    <div class="form-group">
+        <label class="center-block">active:
+        <!--<input class="form-control" formControlName="active">-->
+        <input type="checkbox" formControlName="active">active
+      </label>
+    </div>
+    <div class="form-group">
+        <label class="center-block">creationDate:{{user.creationDate}}
+        <!--<input class="form-control" formControlName="creationDate">-->
+      </label>
+    </div>
+
+</form>
+
+<p>{{userForm.value | json}}</p>

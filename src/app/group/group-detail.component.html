@@ -1,0 +1,30 @@
+<form [formGroup]="groupForm" (ngSubmit)="onSubmit()" novalidate>
+    <div style="margin-bottom: 1em">
+        <button type="submit" [disabled]="groupForm.pristine" class="btn btn-success">Save</button>
+        <button type="reset" (click)="revert()" [disabled]="groupForm.pristine" class="btn btn-danger">Revert</button>
+        <button  (click)="delete()" class="btn btn-danger">Delete</button>
+    </div>
+
+    <div class="form-group">
+        <label class="center-block">Name:
+        <input class="form-control" formControlName="name">
+      </label>
+    </div>
+    <div class="form-group">
+        <label class="center-block">Description:
+        <input class="form-control" formControlName="description">
+      </label>
+    </div>
+    <div class="form-group">
+        <label class="center-block">active:
+        <!--<input class="form-control" formControlName="active">-->
+        <input type="checkbox" formControlName="active">active
+      </label>
+    </div>
+
+
+
+
+</form>
+
+<p>{{groupForm.value | json}}</p>

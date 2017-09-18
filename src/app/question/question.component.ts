@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { QuestionService } from './question.service';
 import { Question } from './question';
 
@@ -12,19 +14,54 @@ export class QuestionComponent implements OnInit {
   list: Question[] = [];
   private title = "questions";
   private errorMessage: any = '';
-  constructor(private qs: QuestionService) { }
+  isLoading = false;
+  selectedQuestion: Question;
+
+  constructor(
+    private qs: QuestionService
+  ) { }
 
   ngOnInit() {
     this.getQuestions();
   }
-
   getQuestions(): void {
+    this.isLoading = true;
     this.qs.getQuestions()
-      .then(question => {
-        this.list = question
-      },
-      error => this.errorMessage = <any>error
-      );
+      .then(questions => {
+        this.list = questions
+        this.isLoading = false;
+      })
+    this.selectedQuestion = undefined;
   }
+
+  addNewQuestion() {
+    const noQuestion = {
+      id: null,
+      description: null,
+      questiontext: null,
+      group: null,
+      user: null,
+      weight: null,
+      answer: null,
+      answers: null,
+      active: null,
+      creationDate: null,
+      type: [],
+      category: null
+      // answer1: null,
+      // answer2: null,
+      // answer3: null,
+      // answer4: null,
+    }
+    this.selectedQuestion = noQuestion;
+  }
+
+  selectQuestion(question: Question) {
+    console.log('select')
+    console.log(question)
+    this.selectedQuestion = question
+  }
+
+
 
 }

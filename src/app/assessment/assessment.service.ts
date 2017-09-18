@@ -9,7 +9,7 @@ import { Assessment } from './assessment';
 export class AssessmentService {
 
   private headers = new Headers({ 'Content-Type': 'application/json' });
-  private assessmentUrl = 'http://localhost:8080/api/assessment';
+  private assessmentUrl = 'http://localhost:8000/api/assessment';
 
 
   constructor(private http: Http) { }

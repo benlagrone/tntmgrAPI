@@ -1,27 +1,22 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http, Response } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
-import { BehaviorSubject } from 'rxjs/Rx';
 import { Observable } from 'rxjs/Observable';
 import { User } from './user';
 
-export class UserForm extends User {
-  public edit = true;
-  public saved = false;
-  public fresh = false;
-}
+// export class UserForm extends User {
+//   public edit = true;
+//   public saved = false;
+//   public fresh = false;
+// }
 
 @Injectable()
 export class UserService {
 
   private headers = new Headers({ 'Content-Type': 'application/json' });
-  private userUrl = 'http://localhost:8080/api/user';
-  private _user: BehaviorSubject<User>;
-  private _users: BehaviorSubject<Array<User>>;
+  private userUrl = 'http://localhost:8000/api/users';
 
   constructor(private http: Http) {
-        this._user = new BehaviorSubject(null);
-        this._users = new BehaviorSubject([]);
       }
 
   getUsers(): Promise<User[]> {
@@ -51,10 +46,10 @@ export class UserService {
   }
 
 
-    UpdateUser(user: User): Promise<User> {
+    UpdateUser(user: User): Promise<any> {
         const headers = new Headers();
         headers.append('accept', 'application/json');
-        return this.http.put(this.userUrl + '/' + user._id, user, { headers: headers })
+        return this.http.put(this.userUrl + '/' + user.id, user, { headers: headers })
             .toPromise()
             .then((response) => {
                 const data: User = response.json() || {};
@@ -66,14 +61,15 @@ export class UserService {
     }
 
 
-    DeleteUser(user: User): Promise<User> {
+    DeleteUser(user: User): Promise<any> {
         const headers = new Headers();
         headers.append('accept', 'application/json');
-        return this.http.delete(this.userUrl + '/' + user._id, { headers: headers })
+        return this.http.delete(this.userUrl + '/' + user.id, { headers: headers })
             .toPromise()
             .then((response) => {
-                const data: User = response.json() || {};
-                return data;
+                // const data: User = response.json() || {};
+                // return data;
+                console.log(response)
             })
             .catch((err) => {
                 Promise.reject(err);
@@ -81,7 +77,7 @@ export class UserService {
     }
 
 
-    CreateUser(user: User): Promise<User> {
+    CreateUser(user: User): Promise<any> {
         const headers = new Headers();
         headers.append('accept', 'application/json');
         return this.http.post(this.userUrl, user, { headers: headers })

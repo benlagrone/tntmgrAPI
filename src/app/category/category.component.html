@@ -1,10 +1,23 @@
-<div class="row">
-    <div class="col-11 col-md-8">
-        <h2>{{title}}</h2>
-        <ul class="list-group">
-            <li class="list-group-item" *ngFor="let item of list">
-                <span class=""><i class="fa fa-circle-o" aria-hidden="true"></i>&nbsp;{{item.name}}</span>
-            </li>
-        </ul>
+<h3 *ngIf="isLoading"><i>Loading Category ... </i></h3>
+<h3 *ngIf="!isLoading">Select a Category:</h3>
+<h3>Category</h3>
+<div class="container">
+    <div class="row">
+        <div class="col-3">
+            <button (click)="getCategories()" class="btn btn-primary">Refresh</button>
+            <button (click)="addNewCategory()" class="btn btn-primary">New Category</button>
+            <ul>
+                <li *ngFor="let category of list" (click)="select(category)"><a>{{category.name}}</a></li>
+            </ul>
+        </div>
+
+        <div class="col-9">
+            <div *ngIf="selectedCategory">
+               
+                <h2>Category Detail</h2>
+                <h3>Editing: {{selectedCategory.name}}</h3>
+                <category-detail [category]="selectedCategory"></category-detail>
+            </div>
+        </div>
     </div>
 </div>

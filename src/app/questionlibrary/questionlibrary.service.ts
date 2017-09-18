@@ -9,7 +9,7 @@ import { QuestionLibrary } from './questionlibrary';
 export class QuestionlibraryService {
 
 private headers = new Headers({ 'Content-Type': 'application/json' });
-  private questionlibraryUrl = 'http://localhost:8080/api/questionlibrary';
+  private questionlibraryUrl = 'http://localhost:8000/api/questionlibrary';
 
   constructor(private http: Http) { }
 

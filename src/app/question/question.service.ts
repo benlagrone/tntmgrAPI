@@ -8,8 +8,8 @@ import { Question } from './question';
 
 export class QuestionService {
   private headers = new Headers({ 'Content-Type': 'application/json' });
-  private questionUrl = 'http://localhost:8080/api/question';
-  
+  private questionUrl = 'http://localhost:8000/api/questions';
+
 
   constructor(private http: Http) { }
 
@@ -31,4 +31,43 @@ export class QuestionService {
     return Observable.throw(errMsg);
   }
 
+  UpdateQuestion(question: Question): Promise<any> {
+    const headers = new Headers();
+    headers.append('accept', 'application/json');
+    return this.http.put(this.questionUrl + '/' + question.id, question, { headers })
+      .toPromise()
+      .then((response) => {
+        const data: Question = response.json() || {};
+        return data;
+      })
+      .catch((err) => {
+        Promise.reject(err);
+      })
+  }
+
+  DeleteQuestion(question: Question): Promise<any> {
+    const headers = new Headers();
+    return this.http.delete(this.questionUrl + '/' + question.id, { headers: headers })
+      .toPromise()
+      .then((response) => {
+        console.log(response)
+      })
+      .catch((err) => {
+        Promise.reject(err);
+      })
+  }
+
+  CreateQuestion(question: Question): Promise<any> {
+    const headers = new Headers();
+    headers.append('accept', 'application/json');
+    return this.http.post(this.questionUrl, question, { headers: headers })
+      .toPromise()
+      .then((response) => {
+        const data: Question = response.json() || {};
+        return data;
+      })
+      .catch((err) => {
+        Promise.reject(err);
+      })
+  }
 }

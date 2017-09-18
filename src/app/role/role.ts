@@ -1,5 +1,7 @@
 
 export class Role {
-    _id: String;
-  name: String;
+  id: string;
+  name: string;
+  description: string;
+  active: boolean;
 }

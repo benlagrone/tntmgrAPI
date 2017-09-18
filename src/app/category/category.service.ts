@@ -9,11 +9,11 @@ import { Category } from './category';
 export class CategoryService {
 
   private headers = new Headers({ 'Content-Type': 'application/json' });
-  private categoryUrl = 'http://localhost:8080/api/category';
+  private categoryUrl = 'http://localhost:8000/api/categories';
 
   constructor(private http: Http) { }
 
-    getCategories(): Promise<Category[]> {
+  getCategories(): Promise<Category[]> {
     return this.http.get(this.categoryUrl)
       .toPromise()
       .then(this.extractData)
@@ -29,6 +29,47 @@ export class CategoryService {
       error.status ? `${error.status} - ${error.statusText}` : 'Server error';
     console.error(errMsg); // log to console instead
     return Observable.throw(errMsg);
+  }
+
+
+  UpdateCategory(category: Category): Promise<any> {
+    const headers = new Headers();
+    headers.append('accept', 'application/json');
+    return this.http.put(this.categoryUrl + '/' + category.id, category, { headers })
+      .toPromise()
+      .then((response) => {
+        const data: Category = response.json() || {};
+        return data;
+      })
+      .catch((err) => {
+        Promise.reject(err);
+      })
+  }
+
+  DeleteCategory(category: Category): Promise<any> {
+    const headers = new Headers();
+    return this.http.delete(this.categoryUrl + '/' + category.id, { headers: headers })
+      .toPromise()
+      .then((response) => {
+        console.log(response)
+      })
+      .catch((err) => {
+        Promise.reject(err);
+      })
+  }
+
+  CreateCategory(category: Category): Promise<any> {
+    const headers = new Headers();
+    headers.append('accept', 'application/json');
+    return this.http.post(this.categoryUrl, category, { headers: headers })
+      .toPromise()
+      .then((response) => {
+        const data: Category = response.json() || {};
+        return data;
+      })
+      .catch((err) => {
+        Promise.reject(err);
+      })
   }
 
 }

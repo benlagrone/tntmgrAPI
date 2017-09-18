@@ -1,82 +1,23 @@
-<div class="row">
-    <div class="col-12 col-md-12">
-        <h2>{{title}}</h2>
-        <form [formGroup]="usersForm" novalidate>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Active</th>
-                        <th>Role</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody class="">
-                    <tr *ngFor="let customUser of customUsers.controls; let i=index" [formGroupName]="i" id="{{i}}UserForm" class='-tUserForms'>
-                        <td>
-                            <span id="user-name-{{i}}-display" [hidden]="formWatchArray[i].edit">
-                                                        {{usersForm.value.customUsers[i].name}}
-                                                    </span>
-                            <span class="form-group {{unique(i)?'unique':'has-error duplicate'}}" [hidden]="!formWatchArray[i].edit">
-                                                        <label for="user-name-{{i}}" class="sr-only">User Name</label>
-                                                        <input required type="text" class="form-control" id="user-name-{{i}}" name="user-name-{{i}}" formControlName="name" />
-                                                    </span>
-                        </td>
-                        <td>
-                            <span id="user-role-{{i}}-display">
-                                                        {{usersForm.value.customUsers[i].type}}
-                                                    </span>
-                        </td>
-                        <td>
-                            <!--<span id="ranking-ods-{{i}}-display" [hidden]="formWatchArray[i].edit">
-                                                        {{formWatchArray[i].displayODS}}
-                                                    </span>
-                            <span [hidden]="!formWatchArray[i].edit">
-                                                        <label for="ranking-ods-{{i}}" class="sr-only">ODS</label>
-                                                        <select required id="ranking-ods-{{i}}" class="form-control" formControlName="ods">
-                                                            <option *ngFor="let odsOption of opDataSets" [value]="odsOption.id">{{odsOption.displayName}}</option>
-                                                        </select>
-                                                    </span>-->
-                        </td>
-                        <td>
-                            <!--<span id="ranking-sort-{{i}}-display" [hidden]="formWatchArray[i].edit">
-                                                        {{rankingsForm.value.customRankings[i].sort}}
-                                                    </span>
-                            <span [hidden]="!formWatchArray[i].edit">
-                                                        <label for="ranking-sort-{{i}}" class="sr-only">Sort Order</label>
-                                                        <select required name="ranking-sort-{{i}}" id="ranking-sort-{{i}}" class="form-control" formControlName="sort">
-                                                            <option *ngFor="let sortorder of sortOrders"  [value]="sortorder">{{sortorder}}</option>
-                                                        </select>
-                                                    </span>-->
-                        </td>
-                        <td>
-                            <span [hidden]="formWatchArray[i].edit||usersForm.value.customUsers[i].type.toLowerCase()==='default'">
-                                                        <a id="user-edit-{{i}}" (click)="EditUser(i)">Edit</a>
-                                                        | <a id="user-delete-{{i}}"(click)="DeleteUser(i)">Delete</a>
-                                                    </span>
-                            <span [hidden]="!formWatchArray[i].edit">
-                                                        <span [hidden]="this.formWatchArray[i].saved">
-                                                        <button 
-                                                        [disabled]="!unique(i)||!(customUser.controls.name.valid&&customUser.controls.type.valid&&customUser.controls.ods.valid&&customUser.controls.sort.valid&&(customUser.controls.name.dirty||customUser.controls.type.dirty||customUser.controls.ods.dirty||customUser.controls.sort.dirty))"
-                                                        (click)="SaveUserg(i)"
-                                                         class="btn btn-primary"
-                                                         id="user-create-{{i}}"
-                                                         >Save</button>
-                                                         </span>
-                            <span [hidden]="!this.formWatchArray[i].saved">
-                                                          <button 
-                                                        [disabled]="!unique(i)||!(customUser.controls.name.valid&&customUser.controls.type.valid&&customUser.controls.ods.valid&&customUser.controls.sort.valid&&(customUser.controls.name.dirty||customUser.controls.type.dirty||customUser.controls.ods.dirty||customUser.controls.sort.dirty))"
-                                                        (click)="UpdateUser(i)"
-                                                         class="btn btn-primary"
-                                                         id="user-update-{{i}}"
-                                                         >Update</button>
-                                                         </span>
-                            <button id="user-cancel-{{i}}" (click)="CancelUser(i)" class="btn btn-default">Cancel</button>
-                            </span>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </form>
+<h3 *ngIf="isLoading"><i>Loading Users ... </i></h3>
+<h3 *ngIf="!isLoading">Select a User:</h3>
+<h3>Users</h3>
+<div class="container">
+    <div class="row">
+        <div class="col-3">
+            <button (click)="getUsers()" class="btn btn-primary">Refresh</button>
+            <button (click)="addNew()" class="btn btn-primary">New User</button>
+            <ul>
+                <li *ngFor="let user of list" (click)="select(user)"><a>{{user.name}}</a></li>
+            </ul>
+        </div>
+
+        <div class="col-9">
+            <div *ngIf="selectedUser">
+               
+                <h2>User Detail</h2>
+                <h3>Editing: {{selectedUser.name}}</h3>
+                <user-detail [user]="selectedUser"></user-detail>
+            </div>
+        </div>
     </div>
 </div>

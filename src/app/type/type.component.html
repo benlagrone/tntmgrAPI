@@ -1,0 +1,23 @@
+<h3 *ngIf="isLoading"><i>Loading Type ... </i></h3>
+<h3 *ngIf="!isLoading">Select a Type:</h3>
+<h3>Type</h3>
+<div class="container">
+    <div class="row">
+        <div class="col-3">
+            <button (click)="getTypes()" class="btn btn-primary">Refresh</button>
+            <button (click)="addNewType()" class="btn btn-primary">New Type</button>
+            <ul>
+                <li *ngFor="let type of list" (click)="select(type)"><a>{{type.name}}</a></li>
+            </ul>
+        </div>
+
+        <div class="col-9">
+            <div *ngIf="selectedType">
+               
+                <h2>Type Detail</h2>
+                <h3>Editing: {{selectedType.name}}</h3>
+                <type-detail [type]="selectedType"></type-detail>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,23 @@
+<h3 *ngIf="isLoading"><i>Loading Groups ... </i></h3>
+<h3 *ngIf="!isLoading">Select a Group:</h3>
+<h3>Groups</h3>
+<div class="container">
+    <div class="row">
+        <div class="col-3">
+            <button (click)="getGroups()" class="btn btn-primary">Refresh</button>
+            <button (click)="addNewGroup()" class="btn btn-primary">New Group</button>
+            <ul>
+                <li *ngFor="let group of list" (click)="select(group)"><a>{{group.name}}</a></li>
+            </ul>
+        </div>
+
+        <div class="col-9">
+            <div *ngIf="selectedGroup">
+               
+                <h2>Group Detail</h2>
+                <h3>Editing: {{selectedGroup.name}}</h3>
+                <group-detail [group]="selectedGroup"></group-detail>
+            </div>
+        </div>
+    </div>
+</div>

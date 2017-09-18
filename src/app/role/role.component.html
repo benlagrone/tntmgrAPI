@@ -1,10 +1,23 @@
-<div class="row">
-    <div class="col-11 col-md-8">
-        <h2>{{title}}</h2>
-        <ul class="list-group">
-            <li class="list-group-item" *ngFor="let item of list">
-                <span class=""><i class="fa fa-circle-o" aria-hidden="true"></i>&nbsp;{{item.name}}</span>
-            </li>
-        </ul>
+<h3 *ngIf="isLoading"><i>Loading Roles ... </i></h3>
+<h3 *ngIf="!isLoading">Select a Role:</h3>
+<h3>Roles</h3>
+<div class="container">
+    <div class="row">
+        <div class="col-3">
+            <button (click)="getRoles()" class="btn btn-primary">Refresh</button>
+            <button (click)="addNewRole()" class="btn btn-primary">New Role</button>
+            <ul>
+                <li *ngFor="let role of list" (click)="select(role)"><a>{{role.name}}</a></li>
+            </ul>
+        </div>
+
+        <div class="col-9">
+            <div *ngIf="selectedRole">
+               
+                <h2>Role Detail</h2>
+                <h3>Editing: {{selectedRole.name}}</h3>
+                <role-detail [role]="selectedRole"></role-detail>
+            </div>
+        </div>
     </div>
 </div>
