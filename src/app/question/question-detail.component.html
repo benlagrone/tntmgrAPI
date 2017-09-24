@@ -29,8 +29,21 @@
     <label class="center-block">type:
 <p-multiSelect [options]="questionTypesList" formControlName="type"></p-multiSelect>
   </label>
-</div>
-<!-- 
+  </div>
+
+  <div class="form-group">
+    <label class="center-block">question library:
+<p-multiSelect [options]="questionQuestionLibraryList" formControlName="questionlibrary"></p-multiSelect>
+  </label>
+  </div>
+  
+  <div class="form-group">
+    <label class="center-block">Add an answer:
+        <input type="text" >
+        <button  type="null" (click)="addAnswer($event)" class="btn btn-success">Add</button>
+      </label>
+  </div>
+
   <div class="form-group">
     <label class="center-block">Available Answers:
     <p-multiSelect [options]="questionAnswerList" formControlName="answers"></p-multiSelect>
@@ -38,6 +51,11 @@
   </div>
 
   <div class="form-group">
+    <label class="center-block">Correct Answers:
+    <p-multiSelect [options]="correctAnswersList" formControlName="answer"></p-multiSelect>
+      </label>
+  </div>
+  <!-- <div class="form-group">
     <label class="center-block">Correct Answers:
     <p-multiSelect [options]="selectedAnswersList" formControlName="answer"></p-multiSelect>
       </label>
@@ -61,12 +79,12 @@
     <p-multiSelect [options]="questionUsersList" formControlName="user"></p-multiSelect>
       </label>
   </div>
-e
-  <div class="form-group">
+  
+  <!-- <div class="form-group">
     <label class="center-block">group:
         <input class="form-control" formControlName="group">
       </label>
-  </div>
+  </div> -->
 
   <div class="form-group">
     <label class="center-block">active:

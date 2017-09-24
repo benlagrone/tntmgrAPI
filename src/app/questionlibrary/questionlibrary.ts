@@ -1,7 +1,6 @@
 export class QuestionLibrary {
-  name: String;
+  id: string;
+  name: string;
   description: String;
-  source: String;
-  category: String;
-  questions: any;
+  active: Boolean;
 }

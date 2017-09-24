@@ -10,38 +10,21 @@ import { QuestionLibrary } from './questionlibrary';
 export class QuestionLibraryComponent implements OnInit {
 
   list: QuestionLibrary[] = [];
-  private title = "QuestionLibraries";
-  isLoading = false;
-  selectedQuestionLibrary: QuestionLibrary;
+  private title = "Question Libraries";
   private errorMessage: any = '';
-
-  constructor(private qs: QuestionLibraryService) { }
+  constructor(private qls: QuestionLibraryService) { }
 
   ngOnInit() {
     this.getQuestionLibraries();
   }
 
   getQuestionLibraries(): void {
-    this.qs.getQuestionLibraries()
+    this.qls.getQuestionLibraries()
       .then(questionlibrary => {
         this.list = questionlibrary;
-        this.isLoading = false;
       },
       error => this.errorMessage = <any>error
       );
-    this.selectedQuestionLibrary = undefined;
   }
 
-  addNewQuestionLibrary() {
-    const noQuestionLibrary = {
-      "id": null,
-      "name": null,
-      "description": null,
-      "active": null
-    }
-    this.selectedQuestionLibrary = noQuestionLibrary;
-  }
-  select(questionlibrary: QuestionLibrary) {
-    this.selectedQuestionLibrary = questionlibrary;
-  }
 }

@@ -10,7 +10,7 @@ import { MultiSelectModule } from 'primeng/primeng';
 import { SelectButtonModule } from 'primeng/primeng';
 
 import { AppComponent } from './app.component';
-import { QuestionlibraryComponent } from './questionlibrary/questionlibrary.component';
+import { QuestionLibraryComponent } from './questionlibrary/questionlibrary.component';
 import { CategoryComponent } from './category/category.component';
 import { QuestionComponent } from './question/question.component';
 import { QuestionDetailComponent } from './question/question-detail.component';
@@ -28,6 +28,7 @@ import { HeroDetailComponent } from './hero/hero-detail.component'; // <-- #1 im
 import { HeroListComponent }   from './hero/hero-list.component';
 import { RoleDetailComponent } from './role/role-detail.component'; // <-- #1 import component
 import { GroupDetailComponent } from './group/group-detail.component'; // <-- #1 import component
+import { QuestionLibraryDetailComponent } from './questionlibrary/questionlibrary-detail.component'; // <-- #1 import component
 
 import { HeroService }         from './hero/hero.service'; //  <-- #1 import service
 
@@ -36,7 +37,7 @@ import { RoleService } from './role/role.service';
 import { GroupService } from './group/group.service';
 import { TypeService } from './type/type.service';
 import { AnswerService } from './answer/answer.service';
-import { QuestionlibraryService } from './questionlibrary/questionlibrary.service';
+import { QuestionLibraryService } from './questionlibrary/questionlibrary.service';
 import { CategoryService } from './category/category.service';
 import { QuestionService } from './question/question.service';
 import { AssessmentService } from './assessment/assessment.service';
@@ -53,7 +54,8 @@ import { AssessmentService } from './assessment/assessment.service';
   ],
   declarations: [
     AppComponent,
-    QuestionlibraryComponent,
+    QuestionLibraryComponent,
+    QuestionLibraryDetailComponent,
     CategoryComponent,
     QuestionComponent,
     AssessmentComponent,
@@ -78,7 +80,7 @@ import { AssessmentService } from './assessment/assessment.service';
     GroupService,
     RoleService,
     QuestionService,
-    QuestionlibraryService,
+    QuestionLibraryService,
     AssessmentService,
     TypeService,
     AnswerService,

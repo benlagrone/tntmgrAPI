@@ -11,4 +11,5 @@ export class Question {
   type: any;
   answers: any;
   category: any;
+  questionlibrary: any
 }

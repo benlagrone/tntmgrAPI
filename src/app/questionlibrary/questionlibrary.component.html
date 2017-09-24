@@ -1,10 +1,23 @@
-<div class="row">
-    <div class="col-11 col-md-8">
-        <h2>{{title}}</h2>
-        <ul class="list-group">
-            <li class="list-group-item" *ngFor="let item of list">
-                <span class=""><i class="fa fa-circle-o" aria-hidden="true"></i>&nbsp;{{item.name}}</span>
-            </li>
-        </ul>
+<h3 *ngIf="isLoading"><i>Loading QuestionLibrary ... </i></h3>
+<h3 *ngIf="!isLoading">Select a QuestionLibrary:</h3>
+<h3>QuestionLibrary</h3>
+<div class="container">
+    <div class="row">
+        <div class="col-3">
+            <button (click)="getQuestionLibraries()" class="btn btn-primary">Refresh</button>
+            <button (click)="addNewQuestionLibrary()" class="btn btn-primary">New QuestionLibrary</button>
+            <ul>
+                <li *ngFor="let questionlibrary of list" (click)="select(questionlibrary)"><a>{{questionlibrary.name}}</a></li>
+            </ul>
+        </div>
+
+        <div class="col-9">
+            <div *ngIf="selectedQuestionLibrary">
+               
+                <h2>QuestionLibrary Detail</h2>
+                <h3>Editing: {{selectedQuestionLibrary.name}}</h3>
+                <questionlibrary-detail [questionlibrary]="selectedQuestionLibrary"></questionlibrary-detail>
+            </div>
+        </div>
     </div>
 </div>

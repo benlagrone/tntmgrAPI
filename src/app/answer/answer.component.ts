@@ -36,7 +36,7 @@ export class AnswerComponent implements OnInit {
     const noAnswer = {
       id: null,
       answertext: null,
-      question: null,
+      // question: null,
       author: null,
       active: null,
       creationDate: null

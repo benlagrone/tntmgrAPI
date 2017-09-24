@@ -2,7 +2,7 @@ import { NgModule }             from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { QuestionlibraryComponent } from './questionlibrary/questionlibrary.component';
+import { QuestionLibraryComponent } from './questionlibrary/questionlibrary.component';
 import { CategoryComponent } from './category/category.component';
 import { QuestionComponent } from './question/question.component';
 import { AssessmentComponent } from './assessment/assessment.component';
@@ -17,7 +17,7 @@ const routes: Routes = [
   { path: 'category',  component: CategoryComponent },
   { path: 'question',  component: QuestionComponent },
   { path: 'assessment',  component: AssessmentComponent },
-  { path: 'questionlibrary',  component: QuestionlibraryComponent },
+  { path: 'questionlibrary',  component: QuestionLibraryComponent },
   { path: 'answer', component: AnswerComponent },
   { path: 'role', component: RoleComponent },
   { path: 'group', component: GroupComponent },

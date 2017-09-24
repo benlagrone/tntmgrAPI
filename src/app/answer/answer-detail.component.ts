@@ -2,8 +2,8 @@ import { Component, Input, OnChanges } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { SelectItem } from 'primeng/primeng';
 import { AnswerService } from './answer.service';
-import { QuestionService } from '../question/question.service';
-import { Question } from '../question/question';
+// import { QuestionService } from '../question/question.service';
+// import { Question } from '../question/question';
 import { UserService } from '../user/user.service';
 import { User } from '../user/user';
 import { Answer } from './answer';
@@ -16,8 +16,8 @@ export class AnswerDetailComponent implements OnChanges {
     @Input() answer: Answer;
     answerForm: FormGroup;
     nameChangeLog: string[] = [];
-    answerQuestionsList: SelectItem[];
-    selectedAnswerQuestions: string[];
+    // answerQuestionsList: SelectItem[];
+    // selectedAnswerQuestions: string[];
     answerUsersList: SelectItem[];
     selectedAnswerUsers: string[];
 
@@ -25,9 +25,9 @@ export class AnswerDetailComponent implements OnChanges {
         private fb: FormBuilder,
         private as: AnswerService,
         private us: UserService,
-        private qs: QuestionService
+        // private qs: QuestionService
     ) {
-        this.getQuestions();
+        // this.getQuestions();
         this.getUsers();
         this.createForm();
         this.logNameChange();
@@ -35,9 +35,7 @@ export class AnswerDetailComponent implements OnChanges {
 
     createForm() {
         this.answerForm = this.fb.group({
-
             answertext: '',
-            question: '',
             author: '',
             active: '',
             creationDate: '',
@@ -47,15 +45,16 @@ export class AnswerDetailComponent implements OnChanges {
         })
     }
 
-    getQuestions() {
-        this.answerQuestionsList = [];
-        this.qs.getQuestions()
-            .then(questions => {
-                questions.map((q) => {
-                    this.answerQuestionsList.push({ label: q.questiontext, value: q.id });
-                })
-            });
-    }
+    // getQuestions() {
+    //     this.answerQuestionsList = [];
+    //     this.qs.getQuestions()
+    //         .then(questions => {
+    //             questions.map((q) => {
+    //                 this.answerQuestionsList.push({ label: q.questiontext, value: q.id });
+    //             })
+    //         });
+    // }
+
     getUsers() {
         this.answerUsersList = [];
         this.us.getUsers()
@@ -69,7 +68,7 @@ export class AnswerDetailComponent implements OnChanges {
     ngOnChanges() {
         this.answerForm.reset({
             answertext: this.answer.answertext,
-            question: this.answer.question,
+            // question: this.answer.question,
             author: this.answer.author,
             active: this.answer.active,
             creationDate: this.answer.creationDate,
@@ -88,7 +87,7 @@ export class AnswerDetailComponent implements OnChanges {
         const saveAnswer: Answer = {
             id: this.answer.id,
             answertext: formModel.answertext as string,
-            question: formModel.question,
+            // question: formModel.question,
             author: formModel.author,
             active: formModel.active,
             creationDate: formModel.creationDate,

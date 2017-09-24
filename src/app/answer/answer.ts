@@ -2,7 +2,7 @@
 export class Answer {
     id: String;
   answertext: string;
-  question: any;
+  // question: any;
   author: any;
   active: Boolean;
   creationDate: String;

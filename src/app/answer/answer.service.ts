@@ -8,7 +8,7 @@ import { Answer } from './answer';
 export class AnswerService {
 
   private headers = new Headers({ 'Content-Type': 'application/json' });
-  private answerUrl = 'http://localhost:8000/api/answer';
+  private answerUrl = 'http://localhost:8000/api/answers';
 
   constructor(private http: Http) {
       }
