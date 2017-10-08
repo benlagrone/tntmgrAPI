@@ -7,6 +7,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MultiSelectModule } from 'primeng/primeng';
 
+import { DragDropModule, DataTableModule, SharedModule } from 'primeng/primeng';
+import { OrderListModule } from 'primeng/primeng';
 import { SelectButtonModule } from 'primeng/primeng';
 
 import { AppComponent } from './app.component';
@@ -15,6 +17,7 @@ import { CategoryComponent } from './category/category.component';
 import { QuestionComponent } from './question/question.component';
 import { QuestionDetailComponent } from './question/question-detail.component';
 import { AssessmentComponent } from './assessment/assessment.component';
+import { AssessmentDetailComponent } from './assessment/assessment-detail.component';
 import { UserComponent } from './user/user.component';
 import { UserDetailComponent } from './user/user-detail.component';
 import { TypeComponent } from './type/type.component';
@@ -50,7 +53,7 @@ import { AssessmentService } from './assessment/assessment.service';
     FormsModule,
     HttpModule,
     AppRoutingModule,
-    ReactiveFormsModule, MultiSelectModule, SelectButtonModule
+    ReactiveFormsModule, MultiSelectModule, SelectButtonModule, DragDropModule, DataTableModule, SharedModule, OrderListModule
   ],
   declarations: [
     AppComponent,
@@ -59,6 +62,7 @@ import { AssessmentService } from './assessment/assessment.service';
     CategoryComponent,
     QuestionComponent,
     AssessmentComponent,
+    AssessmentDetailComponent,
     UserComponent,
     UserDetailComponent,
     AnswerComponent,

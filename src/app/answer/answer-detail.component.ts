@@ -2,8 +2,6 @@ import { Component, Input, OnChanges } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { SelectItem } from 'primeng/primeng';
 import { AnswerService } from './answer.service';
-// import { QuestionService } from '../question/question.service';
-// import { Question } from '../question/question';
 import { UserService } from '../user/user.service';
 import { User } from '../user/user';
 import { Answer } from './answer';

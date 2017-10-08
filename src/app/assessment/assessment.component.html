@@ -1,10 +1,23 @@
-<div class="row">
-    <div class="col-11 col-md-8">
-        <h2>{{title}}</h2>
-        <ul class="list-group">
-            <li class="list-group-item" *ngFor="let item of list">
-                <span class=""><i class="fa fa-circle-o" aria-hidden="true"></i>&nbsp;{{item.name}}</span>
-            </li>
-        </ul>
+<h3 *ngIf="isLoading"><i>Loading Assessments ... </i></h3>
+<h3 *ngIf="!isLoading">Select an Assessment:</h3>
+<h3>Assessments</h3>
+<div class="container">
+    <div class="row">
+        <div class="col-3">
+            <button (click)="getAssessments()" class="btn btn-primary">Refresh</button>
+            <button (click)="addNew()" class="btn btn-primary">New Assessment</button>
+            <ul>
+                <li *ngFor="let assessment of list" (click)="select(assessment)"><a>{{assessment.assessmenttext}}</a></li>
+            </ul>
+        </div>
+
+        <div class="col-9">
+            <div *ngIf="selectedAssessment">
+               
+                <h2>Assessment Detail</h2>
+                <h3>Editing: {{selectedAssessment.assessmenttext}}</h3>
+                <assessment-detail [assessment]="selectedAssessment"></assessment-detail>
+            </div>
+        </div>
     </div>
 </div>

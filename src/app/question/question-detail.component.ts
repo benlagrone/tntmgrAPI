@@ -56,7 +56,6 @@ export class QuestionDetailComponent implements OnChanges, AfterViewInit {
 
     ngAfterViewInit() {
         const answerListControl = this.questionForm.get('answers');
-        console.log('changes', answerListControl);
         answerListControl.valueChanges.subscribe(data => {
             console.log('list', data)
             this.selectedAnswersList = data;
@@ -85,11 +84,6 @@ export class QuestionDetailComponent implements OnChanges, AfterViewInit {
         this.questionForm.valueChanges.subscribe(data => {
             console.log('this', this);
             console.log('data', data);
-            // const answerListControl = this.questionForm.get('answers');
-            // console.log('changes', answerListControl);
-            // console.log('this.questionForm.value', this.questionForm.value.answers);
-            // this.selectedAnswersList = this.questionAnswerList.filter((item) => data.answers.indexOf(item.value) != -1);
-            // console.log('this.selectedAnswersList',  this.selectedAnswersList);
         })
     }
 

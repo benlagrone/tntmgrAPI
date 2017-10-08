@@ -19,6 +19,7 @@ export class QuestionService {
       .then(this.extractData)
       .catch(this.handleError);
   }
+
   private extractData(res: Response) {
     let body = res.json();
     return body || [];
@@ -29,6 +30,13 @@ export class QuestionService {
       error.status ? `${error.status} - ${error.statusText}` : 'Server error';
     console.error(errMsg); // log to console instead
     return Observable.throw(errMsg);
+  }
+
+  getQuestionLibraries(data): Promise<Question[]> {
+    return this.http.post(this.questionUrl+'/listByLibs',data)
+    .toPromise()
+    .then(this.extractData)
+    .catch(this.handleError);
   }
 
   UpdateQuestion(question: Question): Promise<any> {

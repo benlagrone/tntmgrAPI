@@ -1,10 +1,10 @@
+
 export class Assessment {
-  name: String;
-  group: String;
-  author: String;
-  target: String;
-  type: String;
-  description: String;
+    id: String;
+    name: string;
+  description: string;
   active: Boolean;
-  creationDate: Date
+  createdAt: String;
+  questionlibraries: any;
+  questionlist: any;
 }

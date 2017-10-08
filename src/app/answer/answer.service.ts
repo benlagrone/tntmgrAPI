@@ -27,6 +27,13 @@ export class AnswerService {
       .catch(this.handleError);
   }
 
+  getAnswersByQuestions(data): Promise<Answer[]>{
+      return this.http.post(this.answerUrl+'/answersbyquestions',data)
+      .toPromise()
+      .then(this.extractData)
+      .catch(this.handleError);
+  }
+
   private extractData(res: Response) {
     let body = res.json();
     return body || [];
