@@ -10,6 +10,9 @@ import { MultiSelectModule } from 'primeng/primeng';
 import { DragDropModule, DataTableModule, SharedModule } from 'primeng/primeng';
 import { OrderListModule } from 'primeng/primeng';
 import { SelectButtonModule } from 'primeng/primeng';
+import {TreeModule,TreeNode} from 'primeng/primeng';
+import { TreeDragDropService } from 'primeng/primeng';
+
 
 import { AppComponent } from './app.component';
 import { QuestionLibraryComponent } from './questionlibrary/questionlibrary.component';
@@ -53,7 +56,7 @@ import { AssessmentService } from './assessment/assessment.service';
     FormsModule,
     HttpModule,
     AppRoutingModule,
-    ReactiveFormsModule, MultiSelectModule, SelectButtonModule, DragDropModule, DataTableModule, SharedModule, OrderListModule
+    ReactiveFormsModule, MultiSelectModule, SelectButtonModule, DragDropModule, DataTableModule, SharedModule, OrderListModule, TreeModule, 
   ],
   declarations: [
     AppComponent,
@@ -88,7 +91,8 @@ import { AssessmentService } from './assessment/assessment.service';
     AssessmentService,
     TypeService,
     AnswerService,
-    HeroService
+    HeroService,
+    TreeDragDropService
   ],
   bootstrap: [AppComponent]
 })

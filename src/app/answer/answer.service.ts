@@ -28,11 +28,23 @@ export class AnswerService {
   }
 
   getAnswersByQuestions(data): Promise<Answer[]>{
-      return this.http.post(this.answerUrl+'/answersbyquestions',data)
+        const headers = new Headers();
+        headers.append('accept', 'application/json');
+      return this.http.post(this.answerUrl+'/answersbyquestions',data,{ headers: headers })
       .toPromise()
       .then(this.extractData)
       .catch(this.handleError);
   }
+
+  getAnswersByQuestion(data): Promise<Answer[]>{
+    const headers = new Headers();
+    headers.append('accept', 'application/json');
+    return this.http.get(this.answerUrl+'/answersbyquestionid/'+data,{ headers: headers })
+    .toPromise()
+    .then(this.extractData)
+    .catch(this.handleError);
+}
+//   listbyquestionid
 
   private extractData(res: Response) {
     let body = res.json();

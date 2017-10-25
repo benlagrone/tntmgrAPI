@@ -33,7 +33,8 @@ export class QuestionService {
   }
 
   getQuestionLibraries(data): Promise<Question[]> {
-    return this.http.post(this.questionUrl+'/listByLibs',data)
+    console.log('data',data)
+    return this.http.post(this.questionUrl+'/listByLibs', data)
     .toPromise()
     .then(this.extractData)
     .catch(this.handleError);
