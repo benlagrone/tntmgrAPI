@@ -8,7 +8,8 @@ import { Question } from './question';
 
 export class QuestionService {
   private headers = new Headers({ 'Content-Type': 'application/json' });
-  private questionUrl = 'http://localhost:8000/api/questions';
+  // private questionUrl = 'http://localhost:8000/api/questions';
+  private questionUrl = 'http://talentmanagerapi.azurewebsites.net/api/questions';
 
 
   constructor(private http: Http) { }

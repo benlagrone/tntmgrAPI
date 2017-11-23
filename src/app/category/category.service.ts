@@ -9,7 +9,7 @@ import { Category } from './category';
 export class CategoryService {
 
   private headers = new Headers({ 'Content-Type': 'application/json' });
-  private categoryUrl = 'http://localhost:8000/api/categories';
+  private categoryUrl = 'http://talentmanagerapi.azurewebsites.net/api/categories';
 
   constructor(private http: Http) { }
 

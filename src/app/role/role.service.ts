@@ -8,7 +8,7 @@ import { Role } from './role';
 export class RoleService {
 
   private headers = new Headers({ 'Content-Type': 'application/json' });
-  private roleUrl = 'http://localhost:8000/api/roles';
+  private roleUrl = 'http://talentmanagerapi.azurewebsites.net/api/roles';
 
   constructor(private http: Http) { }
 

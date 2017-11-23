@@ -33,7 +33,7 @@ export class AssessmentDetailComponent implements OnChanges {
     draggedQuestion: Question;
     files: TreeNode[];
     files2: TreeNode[];
-    files3: TreeNode[];
+    // files3: TreeNode[];
 
     constructor(
         private fb: FormBuilder,
@@ -57,7 +57,7 @@ export class AssessmentDetailComponent implements OnChanges {
             console.log('data', data);
             this.selectedQuestionLibrariesList = data;
             this.getSelectedQuestions(data);
-        })
+        });
     }
 
     getQuestionLibraries() {
@@ -68,7 +68,7 @@ export class AssessmentDetailComponent implements OnChanges {
         this.qls.getQuestionLibraries()
             .then(questions => {
                 questions.map((q) => {
-                    console.log('q', q);
+                    // console.log('q', q);
                     this.assessmentQuestionLibrariesList.push({
                         label: q.name,
                         // value: q.id,
@@ -85,11 +85,11 @@ export class AssessmentDetailComponent implements OnChanges {
     }
 
     getSelectedQuestions(data) {
-        console.log('foo',data)
+        // console.log('foo',data)
         let children = []
         this.qs.getQuestionLibraries([data])
             .then((questions) => {
-                console.log('questions', questions)
+                // console.log('questions', questions)
                 let qtemp = Object.assign(questions)
                 qtemp.map((q)=>{
         
@@ -108,72 +108,26 @@ export class AssessmentDetailComponent implements OnChanges {
             return children;
     }
 
-    // dragStart(event,question: Question) {
-    //     this.draggedQuestion = question;
-    // }
-
-    // drop(event) {
-    //     console.log('event', event )
-    //     if(this.draggedQuestion) {
-    //         let draggedQuestionIndex = this.findIndex(this.draggedQuestion);
-    //         this.selectedQuestions = [...this.selectedQuestions, this.draggedQuestion];
-    //         this.availableQuestions = this.availableQuestions.filter((val,i) => i!=draggedQuestionIndex);
-    //         this.draggedQuestion = null;
-    //         const questionIds = this.selectedQuestions.map((q)=>q.id);
-    //         this.getAnswers(questionIds)
-    //     }
-    // }
 
     getAnswers(questionIds) {
-        console.log('questionIds', questionIds)
+        let answerArray = []
         this.as.getAnswersByQuestion([questionIds])
             .then((a) => {
-                console.log('answers',a)
-                this.selectedQuestions = this.selectedQuestions.map((q) => {
-                    let answers = Object.assign(a)
-                    q.answers = answers.filter((aw) => aw.questionId === q.id)[0].answersPerQuestion;
-                    return q;
+                console.log('answers a',a)
+                let answerSet = Object.assign(a)
+                console.log('answerSet',answerSet.answersPerQuestion)
+                answerSet.answersPerQuestion.map((b)=>{
+                    b.label = b.answerText;
+                    b.data = b.answerId;
+                    b.expandedIcon = '';
+                    b.collapsedIcon = '';
+                    b.icon = b.correct===true?'fa-check-circle-o':'fa-circle-o';
+                    answerArray.push(b);
                 })
-                // console.log('a', a);
-                // console.log('this', this);
-                // this.createTree(this.selectedQuestions);
-            })
+                
+            });
+            return answerArray;
     }
-
-    // createTree(questions) {
-    //     let questionTree = {
-    //         data: []
-    //     };
-    //     questionTree.data = Object.assign(questions);
-    //     questionTree.data.map((q) => q.label = q.questiontext);
-    //     questionTree.data.map((q) => q.data = 'question');
-
-    //     questionTree.data.map((q) => q.expandedIcon = 'fa-folder-open');
-    //     questionTree.data.map((q) => q.collapsedIcon = 'fa-folder');
-    //     questionTree.data.map((q) => q.children = q.answers);
-    //     questionTree.data.map((q) => {
-    //         q.children.map((c) => c.label = c.answerText);
-    //         q.children.map((c) => c.data = 'answer');
-    //         q.children.map((c) => c.icon = 'fa-file-word-o');
-    //     })
-    //     this.files = questionTree.data;
-    //     console.log('this.files', this.files);
-    // }
-
-    // findIndex(question: Question) {
-    //     let index = -1;
-    //     for (let i = 0; i < this.availableQuestions.length; i++) {
-    //         if (question.questiontext === this.availableQuestions[i].questiontext) {
-    //             index = i;
-    //             break;
-    //         }
-    //     }
-    //     return index;
-    // }
-
-    // dragEnd(event) {
-    //     this.draggedQuestion = null;
-    // }
 
 
     createForm() {
@@ -207,6 +161,8 @@ export class AssessmentDetailComponent implements OnChanges {
     }
 
     prepareSaveAssessment(): Assessment {
+        console.log('this', this)
+
         const formModel = this.assessmentForm.value;
 
         const saveAssessment: Assessment = {

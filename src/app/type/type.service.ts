@@ -9,7 +9,7 @@ import { Type } from './type';
 export class TypeService {
 
   private headers = new Headers({ 'Content-Type': 'application/json' });
-  private typeUrl = 'http://localhost:8000/api/types';
+  private typeUrl = 'http://talentmanagerapi.azurewebsites.net/api/types';
 
   constructor(private http: Http) { }
 

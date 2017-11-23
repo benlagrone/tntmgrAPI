@@ -14,7 +14,7 @@ import { User } from './user';
 export class UserService {
 
   private headers = new Headers({ 'Content-Type': 'application/json' });
-  private userUrl = 'http://localhost:8000/api/users';
+  private userUrl = 'http://talentmanagerapi.azurewebsites.net/api/users';
 
   constructor(private http: Http) {
       }

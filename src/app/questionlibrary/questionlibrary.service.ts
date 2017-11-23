@@ -9,7 +9,7 @@ import { QuestionLibrary } from './questionlibrary';
 export class QuestionLibraryService {
 
   private headers = new Headers({ 'Content-Type': 'application/json' });
-  private questionlibraryUrl = 'http://localhost:8000/api/questionlibraries';
+  private questionlibraryUrl = 'http://talentmanagerapi.azurewebsites.net/api/questionlibraries';
 
   constructor(private http: Http) { }
 

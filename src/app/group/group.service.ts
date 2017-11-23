@@ -8,7 +8,7 @@ import { Group } from './group';
 export class GroupService {
 
   private headers = new Headers({ 'Content-Type': 'application/json' });
-  private groupUrl = 'http://localhost:8000/api/groups';
+  private groupUrl = 'http://talentmanagerapi.azurewebsites.net/api/groups';
 
   constructor(private http: Http) { }
 

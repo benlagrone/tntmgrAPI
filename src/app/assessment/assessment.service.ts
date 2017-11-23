@@ -8,7 +8,7 @@ import { Assessment } from './assessment';
 export class AssessmentService {
 
   private headers = new Headers({ 'Content-Type': 'application/json' });
-  private assessmentUrl = 'http://localhost:8000/api/assessments';
+  private assessmentUrl = 'http://talentmanagerapi.azurewebsites.net/api/assessments';
 
   constructor(private http: Http) {
       }
