@@ -1,21 +1,26 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 const path = require('path');
 const http = require('http');
-const bodyParser = require('body-parser');
-const app = express()
+const app = express();
 
-// app.get('/', (req, res) => res.send('Hello World!'))
+// Parsers
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false}));
 
-app.use(express.static(path.join(__dirname, 'dist')));
+// Angular DIST output folder
+app.use(express.static(path.join(__dirname, '')));
 
-app.get('*', (req,res)=>{
-    res.sendFile(path.join(__dirname, './dist/index.html'));
+// Send all other requests to the Angular app
+app.get('*', (req, res) => {
+
+    res.sendFile(path.join(__dirname, '/index.html'));
 });
 
+//Set Port
 const port = process.env.PORT || '3000';
 app.set('port', port);
 
 const server = http.createServer(app);
-// app.listen(3000, () => console.log('Example app listening on port 3000!'))
 
-server.listen(port, () => console.log(`API running on localhost:${port}`));
+server.listen(port, () => console.log(`Running on         localhost:${port}`));
