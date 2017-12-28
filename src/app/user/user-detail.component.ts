@@ -33,13 +33,13 @@ export class UserDetailComponent implements OnChanges {
             name: '',
             roles: '',
             active: '',
-            creationDate: '',
+            creationDate: new Date(),
             email: '',
             firstname: '',
             lastname: '',
             phone1: '',
             phone2: '',
-            preferredcontact: '',
+            preferredcontact: ''
         });
         this.userForm.valueChanges.subscribe(data => {
 
@@ -89,6 +89,7 @@ export class UserDetailComponent implements OnChanges {
             phone1: formModel.phone1,
             phone2: formModel.phone2,
             preferredcontact: formModel.preferredcontact,
+            creationDate: formModel.createDate
 
         }
         // console.log('save', saveUser)

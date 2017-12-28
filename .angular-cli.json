@@ -1,58 +1,80 @@
 {
-    "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-    "project": {
-        "name": "cog-talent-manager"
-    },
-    "apps": [{
-        "root": "src",
-        "outDir": "dist",
-        "assets": [
-            "assets",
-            "favicon.ico"
-        ],
-        "index": "index.html",
-        "main": "main.ts",
-        "polyfills": "polyfills.ts",
-        "test": "test.ts",
-        "tsconfig": "tsconfig.app.json",
-        "testTsconfig": "tsconfig.spec.json",
-        "prefix": "app",
-        "styles": [
-            "../node_modules/primeng/resources/primeng.css",
-            "../node_modules/primeng/resources/themes/lightness/theme.css",
-            "../node_modules/bootstrap/scss/bootstrap.scss",
-            "../node_modules/font-awesome/scss/font-awesome.scss",
-            "styles.scss"
-        ],
-        "scripts": [],
-        "environmentSource": "environments/environment.ts",
-        "environments": {
-            "dev": "environments/environment.ts",
-            "prod": "environments/environment.prod.ts"
-        }
-    }],
-    "e2e": {
-        "protractor": {
-            "config": "./protractor.conf.js"
-        }
-    },
-    "lint": [{
-            "project": "src/tsconfig.app.json"
-        },
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "project": {
+    "name": "cog-talent-manager"
+  },
+  "apps": [
+    {
+      "root": "src",
+      "outDir": "dist",
+      "assets": [
+        "assets",
+        "favicon.ico",
         {
-            "project": "src/tsconfig.spec.json"
-        },
-        {
-            "project": "e2e/tsconfig.e2e.json"
+          "glob": "server.js",
+          "input": "./server",
+          "output": "./"
         }
-    ],
-    "test": {
-        "karma": {
-            "config": "./karma.conf.js"
-        }
-    },
-    "defaults": {
-        "styleExt": "scss",
-        "component": {}
+      ],
+      "index": "index.html",
+      "main": "main.ts",
+      "polyfills": "polyfills.ts",
+      "test": "test.ts",
+      "tsconfig": "tsconfig.app.json",
+      "testTsconfig": "tsconfig.spec.json",
+      "prefix": "app",
+      "styles": [
+        "../node_modules/quill/dist/quill.core.css",
+        "../node_modules/quill/dist/quill.snow.css",
+        "../node_modules/dragula/dist/dragula.css",
+        "../node_modules/angular-calendar/css/angular-calendar.css",
+        "../node_modules/hopscotch/dist/css/hopscotch.min.css",
+        "../node_modules/perfect-scrollbar/css/perfect-scrollbar.css",
+        "vendor/pace/pace-theme-min.css",
+        "assets/styles/themes/egret-dark-purple.scss",
+        "assets/styles/themes/egret-indigo.scss",
+        "assets/styles/themes/egret-blue.scss",
+        "assets/styles/themes/egret-dark-pink.scss",
+        "assets/styles/styles.css"
+      ],
+      "scripts": [
+        "vendor/pace/pace.min.js",
+        "../node_modules/perfect-scrollbar/dist/perfect-scrollbar.js",
+        "../node_modules/hopscotch/dist/js/hopscotch.min.js",
+        "../node_modules/hammerjs/hammer.js",
+        "vendor/Chart.min.js",
+        "../node_modules/quill/dist/quill.min.js"
+      ],
+      "environmentSource": "environments/environment.ts",
+      "environments": {
+        "dev": "environments/environment.ts",
+        "prod": "environments/environment.prod.ts"
+      }
     }
+  ],
+  "e2e": {
+    "protractor": {
+      "config": "./protractor.conf.js"
+    }
+  },
+  "lint": [
+    {
+      "project": "src/tsconfig.app.json"
+    },
+    {
+      "project": "src/tsconfig.spec.json"
+    },
+    {
+      "project": "e2e/tsconfig.e2e.json"
+    }
+  ],
+  "test": {
+    "karma": {
+      "config": "./karma.conf.js"
+    }
+  },
+  "defaults": {
+    "styleExt": "scss",
+    "component": {}
+  }
 }

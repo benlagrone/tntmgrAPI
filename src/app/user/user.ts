@@ -10,4 +10,5 @@ export class User {
   phone2: string;
   preferredcontact: string;
   active: Boolean;
+  creationDate: Date;
 }

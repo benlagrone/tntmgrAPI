@@ -12,7 +12,7 @@ import { User } from './user';
 export class UserComponent implements OnInit {
   list: User[] = [];
   isLoading = false;
-  selectedUser: User;
+  selectedUser: any;
 
   constructor(
     private us: UserService

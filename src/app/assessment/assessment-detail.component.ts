@@ -1,26 +1,26 @@
-import { Component, Input, OnChanges } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
-import { SelectItem, DragDropModule, DataTableModule, SharedModule } from 'primeng/primeng';
-import { OrderListModule } from 'primeng/primeng';
-import { TreeModule, TreeNode } from 'primeng/primeng';
-import { TreeDragDropService } from 'primeng/primeng';
-import { AssessmentService } from './assessment.service';
-import { QuestionLibraryService } from '../questionlibrary/questionlibrary.service';
-import { QuestionLibrary } from '../questionlibrary/questionlibrary';
-import { QuestionService } from '../question/question.service';
-import { Question } from '../question/question';
-import { UserService } from '../user/user.service';
-import { User } from '../user/user';
-import { Assessment } from './assessment';
-import { Answer } from '../answer/answer';
-import { AnswerService } from '../answer/answer.service';
+import {AfterViewInit, Component, Input, OnChanges} from '@angular/core';
+import {FormArray, FormBuilder, FormGroup} from '@angular/forms';
+import {SelectItem, DragDropModule, DataTableModule, SharedModule} from 'primeng/primeng';
+import {OrderListModule} from 'primeng/primeng';
+import {TreeModule, TreeNode} from 'primeng/primeng';
+import {TreeDragDropService} from 'primeng/primeng';
+import {AssessmentService} from './assessment.service';
+import {QuestionLibraryService} from '../questionlibrary/questionlibrary.service';
+import {QuestionLibrary} from '../questionlibrary/questionlibrary';
+import {QuestionService} from '../question/question.service';
+import {Question} from '../question/question';
+import {UserService} from '../user/user.service';
+import {User} from '../user/user';
+import {Assessment} from './assessment';
+import {Answer} from '../answer/answer';
+import {AnswerService} from '../answer/answer.service';
 
 @Component({
     selector: 'assessment-detail',
     templateUrl: './assessment-detail.component.html',
     styleUrls: ['./assessment-detail.component.scss']
 })
-export class AssessmentDetailComponent implements OnChanges {
+export class AssessmentDetailComponent implements OnChanges, AfterViewInit {
     @Input() assessment: Assessment;
     assessmentForm: FormGroup;
     nameChangeLog: string[] = [];
@@ -32,18 +32,16 @@ export class AssessmentDetailComponent implements OnChanges {
     selectedQuestions: Question[];
     draggedQuestion: Question;
     files: TreeNode[];
-    files2: TreeNode[];
+    files1: TreeNode[];
+
     // files3: TreeNode[];
 
-    constructor(
-        private fb: FormBuilder,
-        private ass: AssessmentService,
-        private us: UserService,
-        private qls: QuestionLibraryService,
-        private qs: QuestionService,
-        private as: AnswerService
-
-    ) {
+    constructor(private fb: FormBuilder,
+                private ass: AssessmentService,
+                private us: UserService,
+                private qls: QuestionLibraryService,
+                private qs: QuestionService,
+                private as: AnswerService) {
         this.getQuestionLibraries();
         // this.getUsers();
         this.createForm();
@@ -91,8 +89,8 @@ export class AssessmentDetailComponent implements OnChanges {
             .then((questions) => {
                 // console.log('questions', questions)
                 let qtemp = Object.assign(questions)
-                qtemp.map((q)=>{
-        
+                qtemp.map((q) => {
+
                     q.label = q.questiontext;
                     q.icon = 'fa-question-circle';
                     q.data = q.description;
@@ -103,9 +101,9 @@ export class AssessmentDetailComponent implements OnChanges {
                 // this.selectedQuestions = this.availableQuestions
                 // const questionIds = this.selectedQuestions.map((q) => q.id);
                 // this.getAnswers(questionIds);
-                
+
             })
-            return children;
+        return children;
     }
 
 
@@ -113,20 +111,20 @@ export class AssessmentDetailComponent implements OnChanges {
         let answerArray = []
         this.as.getAnswersByQuestion([questionIds])
             .then((a) => {
-                console.log('answers a',a)
+                console.log('answers a', a)
                 let answerSet = Object.assign(a)
-                console.log('answerSet',answerSet.answersPerQuestion)
-                answerSet.answersPerQuestion.map((b)=>{
+                console.log('answerSet', answerSet.answersPerQuestion)
+                answerSet.answersPerQuestion.map((b) => {
                     b.label = b.answerText;
                     b.data = b.answerId;
                     b.expandedIcon = '';
                     b.collapsedIcon = '';
-                    b.icon = b.correct===true?'fa-check-circle-o':'fa-circle-o';
+                    b.icon = b.correct === true ? 'fa-check-circle-o' : 'fa-circle-o';
                     answerArray.push(b);
                 })
-                
+
             });
-            return answerArray;
+        return answerArray;
     }
 
 
@@ -187,7 +185,9 @@ export class AssessmentDetailComponent implements OnChanges {
         this.ass.DeleteAssessment(this.assessment);
     }
 
-    revert() { this.ngOnChanges(); }
+    revert() {
+        this.ngOnChanges();
+    }
 
     logNameChange() {
         const nameControl = this.assessmentForm.get('name');
